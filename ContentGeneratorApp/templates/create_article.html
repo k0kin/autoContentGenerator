@@ -1,0 +1,20 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Create Article</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Generate Article</button>
+  </form>
+
+  {% if preview_form %}
+    {{ preview_form.media }}
+    <h2>Preview</h2>
+    <form method="post" action="{% url 'save_article' %}">
+      {% csrf_token %}
+      {{ preview_form }}
+      <button type="submit">Save Article</button>
+    </form>
+  {% endif %}
+{% endblock %}
